@@ -74,8 +74,12 @@ const App = () => (
 								<label htmlFor="brownVelure" className="main__name">Коричневий оксамит</label>
 							</li>
 							<li className="main__item">
-								<input type="checkbox" name="" id="homobeige" className="main__input" />
-								<label htmlFor="homobeige" className="main__name">Гомобежевий</label>
+								<input type="checkbox" name="" id="homoBeige" className="main__input" />
+								<label htmlFor="homoBeige" className="main__name">Гомобежевий</label>
+							</li>
+							<li className="main__item">
+								<input type="checkbox" name="" id="heteroBeige" className="main__input" />
+								<label htmlFor="heteroBeige" className="main__name">Гетеробежевий</label>
 							</li>
 							<li className="main__item">
 								<input type="checkbox" name="" id="violet" className="main__input" />
