@@ -5,7 +5,7 @@
 
 // Підключення шрифтів ===========================================================================================================================================================================================================================================================================
 //&display=swap - додати при підключенні через плагін
-
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900&display=swap);
 // Підключити, якщо є локальні файли шрифтів
 //@import "fonts/fonts";
 
@@ -18,8 +18,8 @@
 // ============================================================================================================================================================================================================================================================================================================================================================================================
 
 // За замовчуванням шрифт ==============================================================================================================================================================================================================================================================================
-$fontFamily: "";
-$fontSize: toRem(14); // де 14(px) - розмір шрифту за замовчуванням з макету
+$fontFamily: "Montserrat";
+$fontSize: toRem(16); // де 14(px) - розмір шрифту за замовчуванням з макету
 
 // Основні кольори
 $mainColor: #000; // Колір шрифту за замовчуванням
@@ -34,7 +34,7 @@ $minWidth: 320;
 // Ширина полотна (макету)
 $maxWidth: 1920;
 // Ширина обмежуючого контейнера (0 = немає обмеження)
-$maxWidthContainer: 1170;
+$maxWidthContainer: 1770;
 // Загальний відступ у контейнера
 // (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
 $containerPadding: 30;
@@ -61,34 +61,40 @@ $responsiveType: 1;
 
 // Стилі тега BODY ============================================================================================================================================================================================================================================================================================================================================================================================
 body {
+
 	// Скролл заблоковано
 	.lock & {
 		overflow: hidden;
 		touch-action: none;
 		overscroll-behavior: none;
 	}
+
 	// Сайт завантажений
-	.loaded & {
-	}
+	.loaded & {}
 }
+
 // Оболонка wrapper ============================================================================================================================================================================================================================================================================================================================================================================================================================================
 .wrapper {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+
 	@supports (overflow: clip) {
 		overflow: clip;
 	}
+
 	// Притискаємо footer
-	> main {
+	>main {
 		flex: 1 1 auto;
 	}
+
 	// Фікс для слайдерів
-	> * {
+	>* {
 		min-width: 0;
 	}
 }
+
 // Обмежуючий контейнер ======================================================================================================================================================================================================================
 /*
 (i) Стилі будуть застосовуватись до
@@ -97,40 +103,54 @@ body {
 Сніппет (HTML): cnt
 */
 @if ($responsiveType==1) {
+
 	// Чуйна
 	[class*="__container"] {
 		@if ($maxWidthContainer>0) {
 			max-width: toRem($containerWidth);
 			margin: 0 auto;
 		}
+
 		@if ($containerPadding>0) {
 			@if ($maxWidthContainer>0) {
 				padding: 0 toRem(math.div($containerPadding, 2));
-			} @else {
+			}
+
+			@else {
 				@include adaptiveValue("padding-left", math.div($containerPadding, 2), 15);
 				@include adaptiveValue("padding-right", math.div($containerPadding, 2), 15);
 			}
 		}
 	}
-} @else {
+}
+
+@else {
+
 	// Брейк-поїнтами
 	[class*="__container"] {
 		margin: 0 auto;
+
 		@if ($maxWidthContainer>0) {
 			max-width: toRem($containerWidth);
-		} @else {
+		}
+
+		@else {
 			@if ($containerPadding>0) {
 				padding: 0 toRem(math.div($containerPadding, 2));
 			}
 		}
+
 		@media (max-width: $pc) {
 			max-width: toRem(970);
 		}
+
 		@media (max-width: $tablet) {
 			max-width: toRem(750);
 		}
+
 		@media (max-width: $mobile) {
 			max-width: none;
+
 			@if ($containerPadding>0 and $maxWidthContainer>0) {
 				padding: 0 toRem(math.div($containerPadding, 2));
 			}
@@ -151,3 +171,166 @@ body {
 
 // Підключення стилів окремих сторінок
 @import "home";
+
+
+.main {
+
+	&__container {}
+
+	&__body {}
+
+	&__menu {
+		height: 100%;
+		position: fixed;
+		background-color: #dadada;
+		padding: toRem(150) toRem(20) toRem(0) toRem(40);
+		top: toRem(0);
+		left: toRem(0);
+	}
+
+	&__aside-title {
+		font-size: toRem(22);
+		font-weight: 500;
+	}
+
+	&__form {}
+
+	&__list {
+		margin-top: toRem(30);
+	}
+
+	&__item {
+		display: flex;
+		gap: toRem(15);
+		align-items: center;
+
+		&:not(:last-child) {
+			padding-bottom: toRem(15);
+		}
+
+	}
+
+	&__input {
+		width: toRem(20);
+		height: toRem(20);
+	}
+
+	&__name {}
+
+	&__sex {}
+
+	&__sex-wrapper {
+		display: flex;
+		gap: toRem(5);
+	}
+
+	&__male {
+		&--input {
+			width: fit-content;
+			margin-bottom: toRem(3);
+		}
+
+		&--name {
+			font-size: toRem(14);
+		}
+
+	}
+
+	&__female {
+		&--input {
+			width: fit-content;
+		}
+
+		&--name {
+			font-size: toRem(14);
+		}
+	}
+
+	&__button {
+		margin-top: toRem(50);
+		font-weight: 700;
+		height: toRem(50);
+		background-color: #5d43d3;
+		color: #fff;
+		width: toRem(150);
+		border-radius: toRem(5);
+		transition: all 0.3s;
+
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #4d3e8f;
+			}
+		}
+	}
+}
+
+.annimal-icon {
+	width: toRem(80);
+	height: toRem(90);
+	border-radius: toRem(3);
+	background-color: red;
+
+	&.checked {
+
+		box-shadow: 0px 0px 3px 3px #5d43d3;
+	}
+}
+
+.chinchilla {
+	margin-top: toRem(100);
+	display: grid;
+	place-items: center;
+
+	&__block {}
+
+	&__parents {
+		display: flex;
+		justify-content: center;
+
+
+		&--wrapper {
+			display: flex;
+			width: fit-content;
+			//justify-content: center;
+			gap: toRem(30);
+			background-color: #d3d3d3;
+			padding: toRem(15);
+			border-radius: toRem(3);
+		}
+	}
+
+
+	&__male {}
+
+	&__female {}
+
+	&__childs {
+		display: flex;
+
+		justify-content: space-between;
+		gap: toRem(30);
+		padding-top: toRem(80);
+	}
+
+	&__child {
+
+		border-radius: toRem(3);
+		background-color: red;
+		position: relative;
+
+
+	}
+}
+
+.chinchilla-name {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	background-color: #5d43d3;
+	width: 100%;
+	padding: toRem(5);
+}
+
+
+//========================================================================================================================================================
